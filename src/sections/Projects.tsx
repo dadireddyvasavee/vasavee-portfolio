@@ -1,0 +1,6 @@
+import {useState} from 'react';
+import {projects} from '../data/portfolio';
+import SectionHeading from '../components/SectionHeading';
+import ProjectCard from '../components/ProjectCard';
+const filters=['All','AI / GenAI','Backend & Full Stack','Computer Vision'];
+export default function Projects({onOpen}:{onOpen:(id:string)=>void}){const [filter,setFilter]=useState('All');const visible=projects.filter(p=>filter==='All'||p.categories.some(c=>c===filter));return <section id="work" className="section"><SectionHeading number="01" label="Selected work" title="Different problems. One engineering mindset." description="Three systems spanning retrieval, full-stack analytics and real-time vision. Open a case study for the decisions behind the interface."/><div className="filter-bar" role="group" aria-label="Filter projects">{filters.map(f=><button key={f} type="button" aria-pressed={filter===f} onClick={()=>setFilter(f)}>{f}</button>)}</div><p className="sr-only" role="status">{visible.length} projects shown</p><div className="project-grid">{visible.map(p=><ProjectCard key={p.id} project={p} onOpen={onOpen}/>)}</div><p className="section-note">Metrics are reported project results from the supplied brief. Evaluation context and limitations are included in each case study.</p></section>}

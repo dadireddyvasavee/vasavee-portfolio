@@ -1,0 +1,2 @@
+import {ArrowUpRight,Download} from 'lucide-react';
+export default function LinkSlot({url,label,resume=false}:{url:string|null;label:string;resume?:boolean}){return url?<a className="text-link" href={url} {...(resume?{download:true}:{target:'_blank',rel:'noopener noreferrer'})}>{label}{resume?<Download size={16}/>:<ArrowUpRight size={16}/>}</a>:<span className="pending-link" title={`${label}: verified link not yet supplied`}>{label}<span>Pending</span></span>}
